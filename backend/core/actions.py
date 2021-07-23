@@ -14,6 +14,6 @@ def gensnowflake():
     return int.from_bytes(flake, byteorder="big")
 
 
-def gentokenhash(token):
-    tokenhash = hashlib.sha256(bytes(token, encoding="utf8")).hexdigest()
+def gentokenhash(token, pepper):
+    tokenhash = hashlib.sha256(bytes(f"{token}+{pepper}")).hexdigest()
     return tokenhash
