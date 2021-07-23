@@ -12,9 +12,9 @@ router = APIRouter()
 @router.post("/token")
 async def token(userinfo: UserCreateBody):
     token = str(uuid4())
-    tokenhash = str(hashlib.sha256(bytes(token, encoding="utf8")).hexdigest())
+    tokenhash = actions.gentokenhash(token, userinfo.username)
     password = userinfo.password
-    passhash = str(hashlib.sha256(bytes(password, encoding="utf8")).hexdigest())
+    passhash = actions.gentokenhash(password, userinfo.username)
 
     async with tasks.Database() as conn:
         await crud.new_user(
