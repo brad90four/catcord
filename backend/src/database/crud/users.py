@@ -6,15 +6,15 @@ from src.database.models import Users
 
 
 async def create_user(
-    username: str,
-    password: str,
-    email: str,
-    uid: str,
-    token: str,
-    ip: str
+    username: str, password: str, email: str, uid: str, token: str, ip: str
 ) -> None:
     user = Users(
-        user_id=uid, token=token, username=username, password=password, email=email, ip=ip
+        user_id=uid,
+        token=token,
+        username=username,
+        password=password,
+        email=email,
+        ip=ip,
     )
     await user.save()
 
