@@ -5,6 +5,7 @@ from fastapi.exceptions import HTTPException
 from loguru import logger
 from starlette.responses import JSONResponse
 
+import src.core.crypto as c
 import src.core.utils as utils
 import src.database.crud.users as users
 from src.core.schemas import UserCreateBody
@@ -33,6 +34,7 @@ async def users_post(request: Request, new_user_info: UserCreateBody):
     username = new_user_info.username
     password = new_user_info.password
     email = new_user_info.email
+    ip = c.encryptip(request.client.host, username)
 
     if await users.check_email_exists(email):
         return HTTPException(detail="Email already exists", status_code=400)
@@ -43,7 +45,7 @@ async def users_post(request: Request, new_user_info: UserCreateBody):
     password_hash = utils.generate_sha256(password)
     token_hash = utils.generate_sha256(token)
 
-    await users.create_user(username, password_hash, email, uid, token_hash)
+    await users.create_user(username, password_hash, email, uid, token_hash, ip)
 
     content = {"uid": uid, "token": token}
     return JSONResponse(content=content)

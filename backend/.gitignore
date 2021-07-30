@@ -3,3 +3,5 @@ catcord_logs/
 .pytest_cache/
 .venv/
 *.log
+
+src/core/crypto.py

@@ -5,6 +5,7 @@ class UserCreateBody(BaseModel):
     username: str
     password: str
     email: str
+    ip: str
 
 
 class NewServerBody(BaseModel):

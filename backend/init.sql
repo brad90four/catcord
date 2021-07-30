@@ -3,7 +3,8 @@ CREATE TABLE users (
     token TEXT NOT NULL,
     username TEXT NOT NULL,
     password TEXT NOT NULL,
-    email TEXT NOT NULL
+    email TEXT NOT NULL,
+    ip TEXT NOT NULL
 );
 
 CREATE TABLE servers (

@@ -8,6 +8,7 @@ class Users(Model):
     username = fields.CharField(null=False, max_length=255)
     password = fields.CharField(null=False, max_length=255)
     email = fields.CharField(null=False, max_length=255)
+    ip = fields.CharField(null=False, max_length=255)
 
     def __str__(self):
         return self.name
