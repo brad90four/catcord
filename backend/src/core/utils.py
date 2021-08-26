@@ -30,12 +30,18 @@ def generate_sha256(string: str) -> str:
 
 def gensnowflake() -> int:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 32f932f (Added generation and decoding of JWTs)
     """
     Generates an ID based on the timestamp.
     """
     global token_count
+<<<<<<< HEAD
 =======
 >>>>>>> 2502cc9 (Replaced tortoise ORM with SQLAlchemy 1.4 with async extension. (#110))
+=======
+>>>>>>> 32f932f (Added generation and decoding of JWTs)
     flake = time.time_ns().to_bytes(56, byteorder="big")
     flake += token_count.count.to_bytes(8, byteorder="big")
     token_count.increment()
