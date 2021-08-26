@@ -1,12 +1,20 @@
 import hashlib
 import time
 import jwt
-from dotenv import load_dotenv
 from os import getenv
+from dataclasses import dataclass
 
-load_dotenv()
 
-token_count = 0
+@dataclass
+class TokenCount:
+    count: int = 0
+
+    def increment(self):
+        self.count += 1
+        self.count %= 256
+
+
+token_count = TokenCount()
 
 
 def generate_sha256(string: str) -> str:
@@ -21,14 +29,16 @@ def generate_sha256(string: str) -> str:
 
 
 def gensnowflake() -> int:
+<<<<<<< HEAD
     """
     Generates an ID based on the timestamp.
     """
     global token_count
+=======
+>>>>>>> 2502cc9 (Replaced tortoise ORM with SQLAlchemy 1.4 with async extension. (#110))
     flake = time.time_ns().to_bytes(56, byteorder="big")
-    flake += token_count.to_bytes(8, byteorder="big")
-    token_count += 1
-    token_count %= 256
+    flake += token_count.count.to_bytes(8, byteorder="big")
+    token_count.increment()
     return int.from_bytes(flake, byteorder="big")
 
 def generatetoken(uid: str, password: str) -> str:
