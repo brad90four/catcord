@@ -62,7 +62,7 @@ async def token(request: Request, user_body: UserBody):
     if not authorized:
         return HTTPException(status_code=403, detail="Invalid Credentials")
 
-    user_token = str(uuid4())
+    user_token = utils.generatetoken(uid, password)
     token_hash = utils.generate_sha256(user_token)
     await users_crud.update_user_token(password_hash, uid, token_hash)
 

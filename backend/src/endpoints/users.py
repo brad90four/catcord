@@ -38,7 +38,7 @@ async def users_post(request: Request, new_user_info: UserCreateBody):
         return HTTPException(detail="Email already exists", status_code=400)
 
     uid = str(utils.gensnowflake())
-    token = str(uuid4())
+    token = utils.generatetoken(uid, password)
 
     password_hash = utils.generate_sha256(password)
     token_hash = utils.generate_sha256(token)
