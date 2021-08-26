@@ -1,8 +1,9 @@
+from dataclasses import dataclass
 import hashlib
 import time
-import jwt
 from os import getenv
-from dataclasses import dataclass
+
+import jwt
 
 
 @dataclass
@@ -29,23 +30,15 @@ def generate_sha256(string: str) -> str:
 
 
 def gensnowflake() -> int:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 32f932f (Added generation and decoding of JWTs)
     """
     Generates an ID based on the timestamp.
     """
     global token_count
-<<<<<<< HEAD
-=======
->>>>>>> 2502cc9 (Replaced tortoise ORM with SQLAlchemy 1.4 with async extension. (#110))
-=======
->>>>>>> 32f932f (Added generation and decoding of JWTs)
     flake = time.time_ns().to_bytes(56, byteorder="big")
     flake += token_count.count.to_bytes(8, byteorder="big")
     token_count.increment()
     return int.from_bytes(flake, byteorder="big")
+
 
 def generatetoken(uid: str, password: str) -> str:
     """
@@ -54,8 +47,11 @@ def generatetoken(uid: str, password: str) -> str:
     :param uid: The ID of the user.
     :param password: The password of the user.
     """
-    token = jwt.encode({"uid": uid, "password": password}, getenv("TOKEN_SECRET"), algorithm="HS256")
+    token = jwt.encode(
+        {"uid": uid, "password": password}, getenv("TOKEN_SECRET"), algorithm="HS256"
+    )
     return token
+
 
 def decodetoken(token: str) -> dict:
     """
@@ -65,4 +61,3 @@ def decodetoken(token: str) -> dict:
     """
     decoded = jwt.decode(token, getenv("TOKEN_SECRET"), algorithms=["HS256"])
     return decoded
-    

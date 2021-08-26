@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from fastapi import Depends, FastAPI, Request
 from fastapi.exceptions import HTTPException, RequestValidationError
 from fastapi.responses import JSONResponse

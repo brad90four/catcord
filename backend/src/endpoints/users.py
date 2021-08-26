@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from fastapi import APIRouter, Depends, Request
 from fastapi.exceptions import HTTPException
 from loguru import logger
