@@ -3,3 +3,6 @@
 #[optional body]
 
 #[optional footer(s)]
+
+# For more information follow this link:
+# https://www.conventionalcommits.org/en/v1.0.0/
