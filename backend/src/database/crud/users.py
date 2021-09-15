@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional, Union
 
 from loguru import logger
 from sqlalchemy import update
@@ -26,9 +26,17 @@ class UserDAL:
         email: str,
         uid: str,
         token: str,
+        phone: str,
+        avatar: Optional[str] = None
     ) -> None:
         user = User(
-            user_id=uid, token=token, username=username, password=password, email=email
+            user_id=uid,
+            token=token,
+            username=username,
+            password=password,
+            email=email,
+            phone=phone,
+            avatar=avatar,
         )
         self.db_session.add(user)
         await self.db_session.flush()
