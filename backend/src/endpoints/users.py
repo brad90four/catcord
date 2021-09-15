@@ -41,6 +41,8 @@ async def users_post(
     username = new_user_info.username
     password = new_user_info.password
     email = new_user_info.email
+    phone = new_user_info.phone
+    avatar = new_user_info.avatar
 
     if await user_dal.check_email_exists(email):
         return HTTPException(detail="Email already exists", status_code=400)
@@ -51,7 +53,7 @@ async def users_post(
     password_hash = utils.generate_sha256(password)
     token_hash = utils.generate_sha256(token)
 
-    await user_dal.create_user(username, password_hash, email, uid, token_hash)
+    await user_dal.create_user(username, password_hash, email, uid, token_hash, phone, avatar)
 
     content = {"uid": uid, "token": token}
     return JSONResponse(content=content)
