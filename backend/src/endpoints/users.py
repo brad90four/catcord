@@ -14,7 +14,9 @@ router = APIRouter()
 
 @router.get("/users")
 async def users_get(
-    request: Request, user_id: str, user_dal: UserDAL = Depends(get_user_dal)
+    request: Request,
+    user_id: str,
+    user_dal: UserDAL = Depends(get_user_dal),
 ):
     logger.info(f"GET request to endpoint /users from client {request.client.host}")
 
