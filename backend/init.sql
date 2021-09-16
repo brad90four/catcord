@@ -1,9 +1,9 @@
 CREATE TABLE users (
     user_id TEXT PRIMARY KEY,
-    token TEXT NOT NULL,
-    username TEXT NOT NULL,
+    email TEXT NOT NULL,
     password TEXT NOT NULL,
-    email TEXT NOT NULL
+    username TEXT NOT NULL,
+    token TEXT NOT NULL
 );
 
 CREATE TABLE servers (
