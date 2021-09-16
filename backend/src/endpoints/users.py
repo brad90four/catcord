@@ -51,7 +51,7 @@ async def users_post(
     password_hash = utils.generate_sha256(password)
     token_hash = utils.generate_sha256(token)
 
-    await user_dal.create_user(username, password_hash, email, uid, token_hash, phone, avatar)
+    await user_dal.create_user(username, password_hash, email, uid, token_hash)
 
     content = {"uid": uid, "token": token}
     return JSONResponse(content=content)
