@@ -6,8 +6,6 @@ class UserCreateBody(BaseModel):
     username: str
     password: str
     email: str
-    phone: str
-    avatar: Optional[str] = None
 
 
 class NewServerBody(BaseModel):
